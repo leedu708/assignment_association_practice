@@ -34,6 +34,8 @@ gem 'pg'
 
 gem 'hirb'
 
+gem 'faker'
+
 group :development do
   gem 'better_errors'
 end
