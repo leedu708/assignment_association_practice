@@ -24,7 +24,7 @@ def generate_users
   last_name = Faker::Name.last_name
 
   u = User.new
-  u[:name] = first_name + last_name
+  u[:name] = first_name + " " + last_name
   u.save
 
 end
@@ -94,23 +94,23 @@ def generate_comments
 end
 
 # Create Users
-(MULTIPLIER * 5).times { generate_users }
+(MULTIPLIER * 10).times { generate_users }
 puts "Created Users"
 
 # Create Categories
-(MULTIPLIER * 5).times { generate_categories }
+(MULTIPLIER * 10).times { generate_categories }
 puts "Created Categories"
 
 # Create Tags
-(MULTIPLIER * 5).times { generate_tags }
+(MULTIPLIER * 10).times { generate_tags }
 puts "Created Tags"
 
 # Create Posts
-(MULTIPLIER * 5).times { generate_posts }
+(MULTIPLIER * 10).times { generate_posts }
 puts "Created Posts"
 
 # Create Comments
-(MULTIPLIER * 5).times { generate_comments }
+(MULTIPLIER * 10).times { generate_comments }
 puts "Created Comments"
 
 puts "Complete"
