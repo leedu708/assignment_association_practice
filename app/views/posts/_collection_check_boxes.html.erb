@@ -1,0 +1,43 @@
+<%= form_for(post, :html => {
+  :id => 'my-form-id',
+  :class => 'my-form-class'
+}) do |f| %>
+  <p>
+    ID: <%= post.id || 'n/a'  %>
+  </p>
+  <div class="form-group">
+    <%= f.label(:title) %>
+    <%= f.text_field(:title, :class => 'form-control') %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:body) %>
+    <%= f.text_area(:body, :class => 'form-control') %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:category_id, 'Category') %>
+    <%= f.collection_select(
+      :category_id,
+      Category.all,
+      :id,
+      :name,
+      {:include_blank => true},
+      {:class => 'form-control'}
+    ) %>
+  </div>
+
+  <%= f.label(:tag_ids, 'Tags') %>
+  <%= f.collection_check_boxes(
+    :tag_ids,
+    Tag.all,
+    :id,
+    :name
+  ) do |b|
+    checkbox = b.label {b.check_box + b.text}
+    %Q[ <div class="checkbox">
+      #{checkbox}
+    </div>].html_safe
+  end %>
+
+  <%= f.submit(:class => 'btn btn-success') %>
+<% end %>

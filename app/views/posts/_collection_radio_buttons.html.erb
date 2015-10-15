@@ -1,0 +1,41 @@
+<%= form_for(post) do |f| %>
+  <p>
+    ID: <%= post.id || 'n/a'  %>
+  </p>
+  <div class="form-group">
+    <%= f.label(:title) %>
+    <%= f.text_field(:title, :class => 'form-control') %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:body) %>
+    <%= f.text_area(:body, :class => 'form-control') %>
+  </div>
+
+  <%= f.label(:category_id, 'Category') %>
+  <%= f.collection_radio_buttons(
+    :category_id,
+    Category.all,
+    :id,
+    :name
+  ) do |r|
+    radio = r.label {r.radio_button + r.text}
+    %Q[<div class="radio">
+      #{radio}
+    </div>].html_safe
+  end %>
+
+  <%= f.label(:tag_ids, 'Tags') %>
+  <%= f.collection_select(
+    :tag_ids,
+    Tag.all,
+    :id,
+    :name,
+    {:include_blank => true},
+    {
+      :class => 'form-control',
+      :multiple => true
+    }
+  ) %>
+
+  <%= f.submit(:class => 'btn btn-success') %>
+<% end %>

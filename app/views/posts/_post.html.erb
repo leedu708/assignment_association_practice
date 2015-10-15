@@ -1,0 +1,8 @@
+<tr>
+  <td><%= post.category ? post.category.name : 'n/a' %></td>
+  <td><%= post.tags.present? ? post.tags.map { |tag| tag.name }.join(', ') : 'n/a' %></td>
+  <td><%= post.body[0..100] if post.body %></td>
+  <td><%= link_to 'Show', post_path(post) %></td>
+  <td><%= link_to 'Edit', edit_post_path(post) %></td>
+  <td><%= link_to 'Delete', post_path(post), :method => :delete, :data => { :confirm => 'Delete post?' } %></td>
+</tr>

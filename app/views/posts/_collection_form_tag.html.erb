@@ -1,0 +1,45 @@
+<%= form_tag(
+  post.persisted? ? post_path(post) : posts_path,
+  :method => post.persisted? ? :put : :post
+) do %>
+  <p>
+    ID: <%= post.id || 'n/a' %>
+  </p>
+  <div class="form-group">
+    <%= label_tag('post_title', 'Title') %>
+    <%= text_field_tag('post[title]', post.title, :class => 'form-control') %>
+  </div>
+  <div class="form-group">
+    <%= label_tag('post_body', 'Body') %>
+    <%= text_area_tag('post[body]', post.body, :class => 'form-control') %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag('post_category_id', 'Category') %>
+    <%= select_tag(
+      'post[category_id]',
+      options_from_collection_for_select(Category.all, :id, :name),
+      :class => 'form-control',
+      :include_blank => true
+    ) %>
+  </div>
+
+  <%= label_tag(:tag_ids, 'Tags') %>
+  <%= collection_check_boxes(
+    :post,
+    :tag_ids,
+    Tag.all,
+    :id,
+    :name
+  ) do |b|
+    checkbox = b.label {b.check_box + b.text}
+    %Q[<div class="checkbox">
+      #{checkbox}
+    </div>].html_safe
+  end %>
+
+  <%= submit_tag(
+    post.persisted? ? 'Update Post' : 'Create Post',
+    :class => 'btn btn-success'
+  ) %>
+<% end %>

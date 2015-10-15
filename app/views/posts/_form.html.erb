@@ -1,0 +1,46 @@
+<div class='row'>
+  <h1>
+    <%= action %>
+    Post
+    <% if post.persisted? %>
+      :
+      <%= link_to(post.title, post_path(post)) %>
+    <% end %>
+  </h1>
+</div>
+
+<!-- Collection Check Boxes -->
+<div class='row'>
+  <div class='col-xs-12'>
+    <h2>
+      1. Form using collection check boxes
+    </h2>
+
+    <%= render :partial => 'collection_check_boxes',
+               :locals => { :post => @post } %>
+  </div>
+</div>
+
+<!-- Radio Buttons -->
+<div class='row'>
+  <div class='col-xs-12'>
+    <h2>
+      2. Form using collection radio buttons
+    </h2>
+
+    <%= render :partial => 'collection_radio_buttons',
+               :locals => { :post => @post } %>
+  </div>
+</div>
+
+<!-- Using form tag -->
+<div class='row'>
+  <div class='col-xs-12'>
+    <h2>
+      3. Using form tag
+    </h2>
+
+    <%= render :partial => 'collection_form_tag',
+               :locals => { :post => @post } %>
+  </div>
+</div>
