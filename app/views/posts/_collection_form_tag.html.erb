@@ -31,8 +31,8 @@
     Tag.all,
     :id,
     :name
-  ) do |b|
-    checkbox = b.label {b.check_box + b.text}
+  ) do |tag|
+    checkbox = tag.label {tag.check_box + tag.text}
     %Q[<div class="checkbox">
       #{checkbox}
     </div>].html_safe

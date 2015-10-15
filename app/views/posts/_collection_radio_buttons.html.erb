@@ -1,4 +1,4 @@
-<%= form_for(post) do |f| %>
+<%= form_for post do |f| %>
   <p>
     ID: <%= post.id || 'n/a'  %>
   </p>
@@ -17,8 +17,8 @@
     Category.all,
     :id,
     :name
-  ) do |r|
-    radio = r.label {r.radio_button + r.text}
+  ) do |cat|
+    radio = cat.label {cat.radio_button + cat.text}
     %Q[<div class="radio">
       #{radio}
     </div>].html_safe
@@ -30,9 +30,10 @@
     Tag.all,
     :id,
     :name,
-    {:include_blank => true},
+    { :include_blank => true },
     {
       :class => 'form-control',
+      :id => 'radio-form-control',
       :multiple => true
     }
   ) %>

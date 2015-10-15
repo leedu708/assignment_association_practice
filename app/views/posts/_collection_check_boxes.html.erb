@@ -1,7 +1,4 @@
-<%= form_for(post, :html => {
-  :id => 'my-form-id',
-  :class => 'my-form-class'
-}) do |f| %>
+<%= form_for post do |f| %>
   <p>
     ID: <%= post.id || 'n/a'  %>
   </p>
@@ -21,8 +18,8 @@
       Category.all,
       :id,
       :name,
-      {:include_blank => true},
-      {:class => 'form-control'}
+      { :include_blank => true },
+      { :class => 'form-control' }
     ) %>
   </div>
 
@@ -32,11 +29,11 @@
     Tag.all,
     :id,
     :name
-  ) do |b|
-    checkbox = b.label {b.check_box + b.text}
-    %Q[ <div class="checkbox">
-      #{checkbox}
-    </div>].html_safe
+    ) do |tag|
+      checkbox = tag.label {tag.check_box + tag.text}
+      %Q[ <div class="checkbox">
+        #{checkbox}
+      </div>].html_safe
   end %>
 
   <%= f.submit(:class => 'btn btn-success') %>
